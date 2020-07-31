@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="noteViewModel"
+            type="com.example.sunfoxnotepad.viewmodel.NoteViewModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.SecondFragment"
+    android:padding="15dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@={noteViewModel.noteDateAndTime}"/>
+
+    <EditText
+        android:id="@+id/note_content_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="@string/note_edit_text_hint"
+        android:text="@={noteViewModel.noteContent}"
+        android:background="@null"
+        android:gravity="top|left"
+        android:inputType="textMultiLine"
+        android:overScrollMode="always"
+        android:scrollbarStyle="insideInset"
+        android:scrollbars="vertical"
+        android:lines="6"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:scrollHorizontally="false"/>
+<!--    <EditText-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:ems="10"-->
+<!--        android:lines="8"-->
+<!--        android:layout_marginBottom="50dp"-->
+<!--        android:inputType="textMultiLine"-->
+<!--        android:id="@+id/note_content_edit_text"/>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    <Button
+        android:id="@+id/save_note_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="@{()->noteViewModel.saveOrUpdate()}"
+        android:text="@={noteViewModel.saveOrUpdateButtonText}" />
+        <Button
+            android:id="@+id/delete_note_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->noteViewModel.clearOrDelete()}"
+            android:text="@={noteViewModel.cancelOrDeleteButtonText}" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
