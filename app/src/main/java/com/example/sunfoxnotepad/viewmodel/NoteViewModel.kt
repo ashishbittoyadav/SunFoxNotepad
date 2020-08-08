@@ -67,7 +67,8 @@ class NoteViewModel(private val noteRepository: NoteRepository) : ViewModel(), O
                         clearAll()
                         for (n in p0.children) {
                             var note = n.getValue(Note::class.java)
-                            populateLocalDB(note!!)
+                            if(!note!!.isDeleted!!)
+                                populateLocalDB(note!!)
                         }
                     }
                 }
@@ -196,6 +197,9 @@ class NoteViewModel(private val noteRepository: NoteRepository) : ViewModel(), O
     }
 
     fun delete(note: Note) = viewModelScope.launch {
+        note.isDeleted = true
+        noteToUpdateOrDelete = note
+        updateRemoteNoteDB(note)
         var numberOfRowDeleted = noteRepository.deleteNote(note)
         if (numberOfRowDeleted > 0) {
             noteContent.value = null

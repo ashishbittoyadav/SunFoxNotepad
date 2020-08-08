@@ -2,6 +2,7 @@ package com.example.sunfoxnotepad.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -61,7 +62,7 @@ class SecondFragment : Fragment() {
                     findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
                 }
                 else if(status.toString().equals(Utility.EMPTY)){
-                    showDialog("can not save empty note?"
+                    showDialog("can not save any empty note?"
                     ,"ok","cancel",null)
                 }
             }
@@ -87,6 +88,7 @@ class SecondFragment : Fragment() {
 
 
     override fun onPause() {
+        Log.d("data",parentFragmentManager.fragments.size.toString())
         val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(binding.root.windowToken, 0)
         super.onPause()

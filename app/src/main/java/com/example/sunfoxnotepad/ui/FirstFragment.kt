@@ -134,4 +134,8 @@ class FirstFragment : Fragment(), OnItemLongClickListener {
         }
         builder.show()
     }
+
+    override fun onPause() {
+        super.onPause()
+    }
 }

@@ -19,6 +19,8 @@ class Note(){
     var content:String?=null
     @ColumnInfo(name = "note_date")
     var dateStamp:String?=null
+    @ColumnInfo(name = "is_note_deleted")
+    var isDeleted:Boolean?=false
 
     override fun toString(): String {
         return number.toString()+" $content" +

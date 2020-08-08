@@ -16,9 +16,11 @@
             app:destination="@id/SecondFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_right"
-            app:launchSingleTop="false"
+            app:launchSingleTop="true"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/FirstFragment"
+            app:popUpToInclusive="false"
             />
     </fragment>
     <fragment
@@ -35,7 +37,7 @@
             app:launchSingleTop="false"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/SecondFragment"
+            app:popUpTo="@id/FirstFragment"
             app:popUpToInclusive="true" />
     </fragment>
 </navigation>
