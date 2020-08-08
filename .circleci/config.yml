@@ -11,3 +11,10 @@ jobs:
       - checkout
       - run:
           command: ./gradlew build
+
+            - run:
+                name: Install fastlane
+                command: bundle install
+            - run:
+                name: Execute fastlane
+                command: bundle exec fastlane playstore
