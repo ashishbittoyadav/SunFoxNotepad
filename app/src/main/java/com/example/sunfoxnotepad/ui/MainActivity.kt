@@ -20,10 +20,8 @@ class MainActivity : AppCompatActivity() {
             R.layout.activity_main
         )
 
+        val intent = intent
+        binding.userDetail.text = intent.getStringExtra("user")
 
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
     }
 }
