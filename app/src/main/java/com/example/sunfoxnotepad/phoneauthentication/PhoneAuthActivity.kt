@@ -40,7 +40,6 @@ class PhoneAuthActivity : AppCompatActivity() {
     }
 
     private fun verifyMobileNumber(phoneNumber: String){
-        Log.d("firebase",phoneNumber)
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
             phoneNumber, // Phone number to verify
             60, // Timeout duration
@@ -55,7 +54,7 @@ class PhoneAuthActivity : AppCompatActivity() {
                 }
 
                 override fun onVerificationFailed(p0: FirebaseException) {
-                    Log.d("firebase",p0.toString())
+
                 }
 
                 override fun onCodeSent(p0: String, p1: PhoneAuthProvider.ForceResendingToken) {
@@ -71,7 +70,6 @@ class PhoneAuthActivity : AppCompatActivity() {
             .addOnCompleteListener {
                 if(it.isSuccessful){
                     val user = it.result?.user
-                    Log.d("firebaseUser",user?.phoneNumber.toString()+" "+user?.metadata.toString())
                     val intent = Intent(this,MainActivity::class.java)
                     intent.putExtra("user",it.result?.user?.phoneNumber.toString())
                     startActivity(intent)
