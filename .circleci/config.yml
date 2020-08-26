@@ -9,36 +9,25 @@ jobs:
     steps:
       - checkout
 
-    debug-apk:
-      steps:
-        - run:
+      - run:
+            name: "create debug build"
             command: ./gradlew build
 
-    install-firebase:
-      steps:
-        - run:
+      - run:
             name: "Install Firebase CLI"
             command: |
               curl -sL firebase.tools | bash
 
-    deploy-build:
+    deploy-prod:
       - run:
+          name: "distribute to firebase if current branch is master"
           command: firebase appdistribution:distribute app/build/outputs/apk/debug/app-debug.apk --app 1:688853618096:android:c544f2325370623bf29a75  --token 1//0gYok8JUUlpEaCgYIARAAGBASNwF-L9IrcwqV5iFkJZGNjCJpq9_A2bJsUP0Nwg-_8TS_uGMU0pHMnKjw5WFrSZj9K7YBlFn71sg --testers "ashishbitto07@gmail.com"
 workflows:
   version: 1
   build-deploy:
     jobs:
       - build:
-      - debug-apk:
-        - requires:
-            - build
-          filters:
-             branches:
-               - only: master
-      - install-firebase:
-          filters:
-            - only: master
-      - deploy-build:
+      - deploy-prod:
           requires:
             - install-firebase
             - bebug-apk
