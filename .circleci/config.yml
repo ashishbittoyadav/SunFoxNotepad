@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
 
-    build-debug-apk:
+    debug-apk:
       steps:
         - run:
             command: ./gradlew build
@@ -41,7 +41,7 @@ workflows:
       - deploy-build:
           requires:
             - install-firebase
-            - build-bebug-apk
+            - bebug-apk
           filters:
             branches:
               only: master
