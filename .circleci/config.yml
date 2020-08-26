@@ -4,12 +4,14 @@ orbs:
   android: circleci/android@0.2.0
 
 jobs:
-  build:
-    executor: android/android
+  - build:
     filters:
       branches:
-        ignore: master
-        only: featire_firebase_otp
+        ignore:
+          - master
+        only:
+          - /featire_firebase_otp
+    executor: android/android
     steps:
       - checkout
       - run:
