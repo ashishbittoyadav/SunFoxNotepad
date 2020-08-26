@@ -1,6 +1,5 @@
 package com.example.sunfoxnotepad.viewmodel
 
-import android.util.Log
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
 import androidx.lifecycle.LiveData
@@ -19,6 +18,7 @@ import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+
 
 class NoteViewModel(private val noteRepository: NoteRepository) : ViewModel(), Observable {
 
