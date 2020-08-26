@@ -5,6 +5,7 @@ orbs:
 
 jobs:
   build:
+    working_directory: ~/featire_firebase_otp
     executor: android/android
 
     steps:
