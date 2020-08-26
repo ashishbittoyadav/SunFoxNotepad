@@ -8,7 +8,7 @@ jobs:
     executor: android/android
 
     steps:
-      - checkout
+      - checkout "master"
       - run:
           command: ./gradlew build
 
