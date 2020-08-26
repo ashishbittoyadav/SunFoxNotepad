@@ -10,12 +10,12 @@ jobs:
       - checkout
 
     deploy-build:
+       steps:
       - run:
           command: ./gradlew build
-      - run:
           name: "Install Firebase CLI"
-          command: |
-            curl -sL firebase.tools | bash
+            command: |
+              curl -sL firebase.tools | bash
       - run:
           command: firebase appdistribution:distribute app/build/outputs/apk/debug/app-debug.apk --app 1:688853618096:android:c544f2325370623bf29a75  --token 1//0gYok8JUUlpEaCgYIARAAGBASNwF-L9IrcwqV5iFkJZGNjCJpq9_A2bJsUP0Nwg-_8TS_uGMU0pHMnKjw5WFrSZj9K7YBlFn71sg --testers "ashishbitto07@gmail.com"
 workflows:
