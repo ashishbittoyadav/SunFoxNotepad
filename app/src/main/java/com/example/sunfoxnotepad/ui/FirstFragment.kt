@@ -39,6 +39,7 @@ import java.util.ArrayList
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
+ * note added in master branch for testing ci cd
  */
 class FirstFragment : Fragment(), OnItemLongClickListener {
 
