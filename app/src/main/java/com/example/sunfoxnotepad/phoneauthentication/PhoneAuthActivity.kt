@@ -3,8 +3,6 @@ package com.example.sunfoxnotepad.phoneauthentication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.EditText
 import androidx.databinding.DataBindingUtil
 import com.example.sunfoxnotepad.R
 import com.example.sunfoxnotepad.databinding.ActivityPhoneAuthBinding
@@ -22,7 +20,6 @@ class PhoneAuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_phone_auth)
-
         mAuth = FirebaseAuth.getInstance()
         mAuth.setLanguageCode("in")
         binding.buttonSms.setOnClickListener {

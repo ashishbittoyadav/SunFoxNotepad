@@ -1,6 +1,7 @@
 package com.example.sunfoxnotepad.ui
 
 import android.annotation.SuppressLint
+import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -22,12 +23,15 @@ import com.example.sunfoxnotepad.adapter.NoteRecyclerViewAdapter
 import com.example.sunfoxnotepad.adapter.OnItemLongClickListener
 import com.example.sunfoxnotepad.databinding.FragmentFirstBinding
 import com.example.sunfoxnotepad.db.NoteRoomDB
+import com.example.sunfoxnotepad.firebase.analytics.FirebaseAnalyticsHelper
 import com.example.sunfoxnotepad.model.Note
 import com.example.sunfoxnotepad.realtimedb.FireBaseRealTimeDataBase
 import com.example.sunfoxnotepad.repository.NoteRepository
 import com.example.sunfoxnotepad.utility.Utility
 import com.example.sunfoxnotepad.viewmodel.NoteViewModel
 import com.example.sunfoxnotepad.viewmodel.NoteViewModelFactory
+import com.google.android.gms.measurement.module.Analytics
+import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -61,6 +65,7 @@ class FirstFragment : Fragment(), OnItemLongClickListener {
         binding.noteViewModel = viewModel
         binding.lifecycleOwner=this
         binding.addNoteFab.setOnClickListener{
+            FirebaseAnalyticsHelper.logEvent(activity?.application!!,"add_item","add new note",FirebaseAnalytics.Event.ADD_TO_CART)
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
     }
@@ -100,6 +105,7 @@ class FirstFragment : Fragment(), OnItemLongClickListener {
 
 
     override fun onItemLongClicked(note: Note):Boolean{
+        FirebaseAnalyticsHelper.logEvent(activity?.application!!,"item_clicked","record clicked",FirebaseAnalytics.Event.SELECT_ITEM)
         showDialog(requireContext().resources.getString(R.string.dialog_message)
                 ,requireContext().resources.getString(R.string.dialog_positive_button)
                     , requireContext().resources.getString(R.string.dialog_negative_button)
@@ -116,13 +122,14 @@ class FirstFragment : Fragment(), OnItemLongClickListener {
                 val bundle = bundleOf(Utility.NOTE_ID to note.count)
                 findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment,bundle)
             }else if(positiveButtonText.equals(Utility.DELETE)) {
+                FirebaseAnalyticsHelper.logEvent(activity?.application!!,"delete()","note deleted",FirebaseAnalytics.Event.LEVEL_END)
                 viewModel.delete(note)
             }
         }
         builder.setNegativeButton(negativeButtonText) { dialog, _ ->
             if(negativeButtonText.equals(Utility.DELETE)){
                 showDialog(
-                    "Do you want to delete?"
+                    "Do you want to delete note?"
                     , Utility.DELETE
                     , Utility.CANCEL
                     , null
@@ -131,6 +138,7 @@ class FirstFragment : Fragment(), OnItemLongClickListener {
             }
         }
         builder.setNeutralButton(neutralButtonText) { dialog, _ ->
+            FirebaseAnalyticsHelper.logEvent(activity?.application!!,"neutral","nothing",FirebaseAnalytics.Event.SELECT_CONTENT)
         }
         builder.show()
     }

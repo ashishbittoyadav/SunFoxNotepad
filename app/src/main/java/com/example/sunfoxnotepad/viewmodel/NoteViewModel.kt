@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.sunfoxnotepad.firebase.analytics.FirebaseAnalyticsHelper
 import com.example.sunfoxnotepad.utility.Event
 import com.example.sunfoxnotepad.model.Note
 import com.example.sunfoxnotepad.realtimedb.FireBaseRealTimeDataBase
