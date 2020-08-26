@@ -5,9 +5,11 @@ orbs:
 
 jobs:
   build:
-    branch: featire_firebase_otp
     executor: android/android
-
+    filters:
+      branches:
+        ignore: master
+        only: featire_firebase_otp
     steps:
       - checkout
       - run:
