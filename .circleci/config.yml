@@ -29,7 +29,7 @@ workflows:
   build-deploy:
     jobs:
       - build:
-      - build-debug-apk:
+      - debug-apk:
         - requires:
             - build
           filters:
